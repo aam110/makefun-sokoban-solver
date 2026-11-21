@@ -1,10 +1,1 @@
-import f from'node:fs'
-for(let k=1;k<6;){let i='i00'+k++,t=f.readFileSync('/input/'+i+'/level.txt')+'',w=t.indexOf('\n')+1,s=t.replace(/\n/g,'#'),P=s.indexOf('@'),h=P/w|0,p=P%w,F=x=>s[x]!='#',o='',O=[-w,w,-1,1],C='udlr',g=x=>1n<<BigInt(x)
-for(let j=h*w;j<h*w+w;j++)if(F(j))for(let e of[-w,w]){let c=j+e;if(!F(c))continue
-let M={[j]:0,[c]:1},Q=[j,c],F2=y=>{for(let k of O){let z=y+k;if(F(z)&&!(z in M)){M[z]=Q.push(z)-1;F2(z)}}};F2(c)
-let G=0n,B=0n,E=0n,N=Q.map((x,z)=>{let a=O.map(k=>M[x+k]??-1),v=s[x];if(v=='.'||v=='*')G|=g(z);else if((a[0]|a[1])<0&&(a[2]|a[3])<0)E|=g(z);if(v=='$'||v=='*')B|=g(z);return a})
-while(p<c%w)o+='r',p++;while(p>c%w)o+='l',p--
-let a=[[B,0,'']],b=[],S={}
-for(let T;(T=a.pop()||(a=b.reverse(),b=[],a.pop()));){let[m,u,mv]=T,k=m+','+u;if(S[k])continue;S[k]=1;if(m==G&&!u){o+=mv;break}
-N[u].forEach((y,kk)=>{if(y<0)return;let z=mv+C[kk];if(m&g(y)){let ah=N[y][kk];if(ah<0||m&g(ah))return;let m2=m^g(y)^g(ah);if(m2&E)return;b.push([m2,y,z])}else a.push([m,y,z])})}
-}f.mkdirSync(P='/output/'+i);f.writeFileSync(P+'/solution.txt',o)}
+import f from"fs";import z from"zlib";eval(z.brotliDecompressSync(Buffer.from(`GzAEAIzDuOF7wNTajbIoIh3q1rSW4yVFRIJLJXRQw0x71d+eZfp0Cytl5iLaMnJPlNY9dE39Fn4u965l0dk/rnU2wPlEqm1tNG+D5eXJ5dte4MPOxYUakOGQXbbJc8anHmrs5cNc0+r07OgLnSlDjT/t6YTmktLCv6SoBylZqfizKCKEmGcLKIiZzoHWMo3dYSsXdh+v0ktiWjJrN217/Y9Pa8xHopwqMU1XcF6vCmio0ppn+UtnssB1sYCGckZ4w0ljOhSbp6ENkKhTzThNiCrwo3u9vxyLEImqHfuJtNIWI73sGH/dPoIZWL1oq18C4tVmCq4A9bq+/temos4odRZA1cpEEOxGVmaMN1mZdT3T0jzFg8G5Go21/UF7Or2jubHoQRPRJNoeKKIzqenRK7zoURVv5NupxRx86bos1dX1vxB+gRyJC8zvnoskEgnsmKdpXWL+xj/2I5ES1DjpJUS/PDgP2YrQPsmcMxsTDaU5Xj34edUHe3S5P3UyRuvxhdN5nu2pEPG4V78KkujjmuiUgurRnqn5qq8AMZA2IFnYa6518/RkdK2QBOhzicv3BVABqowG0PYPXiGlZAyLCFyMDAS6HmsBHUOhYGTwn4quSDzNNOMMGQcPUCFWhgZOAFQOCh9LTfJSHcLw9zfuHzy5E5kj85/CUn1IeVvwszw7Q1RZOHJCEyUWgZPEIgT82nMTQMxXALAZhoabTE2HMY9nmD6TlWqU1jFBWfiXxOgZGnmrcXOJBqnYawH9h8PTFBIBcat1cF4ho8jYfoLfF4Iwo2XH6P0tvzf0FTYF/+sbo09wUfq+6j18GlaqXQ7unWKeEqFuI7R7m1DTBbaVDZ1YAN7QOg==`,"base64"))+"")
