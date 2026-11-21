@@ -1,3 +1,10 @@
 import f from'node:fs'
-let L='lrud',g,W,D,K,R,U,p,s,m,Y,u,x,e,E,b0,g0,J,S,V,n,b,w,c,d,q,y,r,Q
-for(let id of f.readdirSync('/input')){s=f.readFileSync('/input/'+id+'/level.txt')+'';g=s.replace(/\n/g,'');W=s.search('\n');p=g.search('@');D=[-1,1,-W,W];K=(v,E)=>g[v]!='#'&&((v/W|0)-8||v==E||!E);R=(b,p,E,P={[p]:0},q,v,e)=>{Q=[p];for(q of Q)for(e of D)v=q+e,!(v in P)&&K(v,E)&&!b.includes(v)&&(P[v]=q,Q.push(v));return P};U=(a,t)=>t==a?'':U(a,Q[t])+L[D.indexOf(t-Q[t])];m='';u=p;Y=[];for(x=0;x<W;x++)for(s of[-1,1]){E=8*W+x;e=E+s*W;if(K(e,-1)){R([],e,-1);b0=[];g0=[];for(q of Q){c=g[q];c=='.'||c=='*'?(g0.push(q),c=='*'&&b0.push(q)):c=='$'&&b0.push(q)}Q=R(Y,u,0);m+=U(u,E);J={};q=[...g0];for(c of q){J[c]=1;for(d of D){y=c-d;if(!(y in J)&&K(y,E)&&K(y-d,E))J[y]=q.push(y)}}S=[[b0,E,'']];V={};for(n=0;S[n];n++){[b,p,w]=S[n];if(b.every(v=>g0.includes(v))){r=w;u=p;break}Q=R(b,p,E);for(c of b)for(d of D){y=c+d;if(c-d in Q&&y in J&&!b.includes(y)){q=b.map(v=>v^c?v:y).sort((a,b)=>a-b);V[e=q+','+c]||(V[e]=S.push([q,c,w+U(p,c-d)+L[D.indexOf(d)]]))}}}m+=r;Y=g0}}f.mkdirSync(e='/output/'+id);f.writeFileSync(e+'/solution.txt',m)}
+for(let k=1;k<6;){let i='i00'+k++,t=f.readFileSync('/input/'+i+'/level.txt')+'',w=t.indexOf('\n')+1,s=t.replace(/\n/g,'#'),P=s.indexOf('@'),h=P/w|0,p=P%w,F=x=>s[x]!='#',o='',O=[-w,w,-1,1],C='udlr',g=x=>1n<<BigInt(x)
+for(let j=h*w;j<h*w+w;j++)if(F(j))for(let e of[-w,w]){let c=j+e;if(!F(c))continue
+let M={[j]:0,[c]:1},Q=[j,c],F2=y=>{for(let k of O){let z=y+k;if(F(z)&&!(z in M)){M[z]=Q.push(z)-1;F2(z)}}};F2(c)
+let G=0n,B=0n,E=0n,N=Q.map((x,z)=>{let a=O.map(k=>M[x+k]??-1),v=s[x];if(v=='.'||v=='*')G|=g(z);else if((a[0]|a[1])<0&&(a[2]|a[3])<0)E|=g(z);if(v=='$'||v=='*')B|=g(z);return a})
+while(p<c%w)o+='r',p++;while(p>c%w)o+='l',p--
+let a=[[B,0,'']],b=[],S={}
+for(let T;(T=a.pop()||(a=b.reverse(),b=[],a.pop()));){let[m,u,mv]=T,k=m+','+u;if(S[k])continue;S[k]=1;if(m==G&&!u){o+=mv;break}
+N[u].forEach((y,kk)=>{if(y<0)return;let z=mv+C[kk];if(m&g(y)){let ah=N[y][kk];if(ah<0||m&g(ah))return;let m2=m^g(y)^g(ah);if(m2&E)return;b.push([m2,y,z])}else a.push([m,y,z])})}
+}f.mkdirSync(P='/output/'+i);f.writeFileSync(P+'/solution.txt',o)}
